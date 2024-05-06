@@ -34,9 +34,11 @@ function M.bin_xxd(file)
   vim.cmd 'setlocal ft=xxd'
 end
 
-require 'which-key'.register {
-  ['<leader>x'] = { name = 'xxd', },
-  ['<leader>xx'] = { function() M.bin_xxd() end, 'xxd: do', mode = { 'n', 'v', }, silent = true, },
-}
+function M._map()
+  require 'which-key'.register {
+    ['<leader>x'] = { name = 'xxd', },
+    ['<leader>xx'] = { function() M.bin_xxd() end, 'xxd: do', mode = { 'n', 'v', }, silent = true, },
+  }
+end
 
 return M
