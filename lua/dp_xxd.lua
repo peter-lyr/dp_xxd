@@ -28,7 +28,8 @@ function M.bin_xxd(file)
   local c = xxd_output_sub_dir_path:joinpath(bin_fname_tail .. '.c').filename
   local bak = xxd_output_sub_dir_path:joinpath(bin_fname_tail .. '.bak').filename
   vim.fn.system(string.format('copy /y "%s" "%s"', bin_fname, bak))
-  vim.fn.system(string.format('xxd "%s" "%s"', bak, xxd))
+  -- vim.fn.system(string.format('xxd "%s" "%s"', bak, xxd))
+  vim.fn.system(string.format('xxd -g 1 "%s" "%s"', bak, xxd))
   vim.fn.system(string.format('%s && xxd -i -c 16 "%s" "%s"', B.system_cd(bak), vim.fn.fnamemodify(bak, ':t'), c))
   vim.cmd('e ' .. xxd)
   vim.cmd 'setlocal ft=xxd'
